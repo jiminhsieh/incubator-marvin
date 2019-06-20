@@ -25,8 +25,8 @@ matrix:
         - $HOME/.m2
         - $HOME/.ivy2
       before_cache:
-        - find $HOME/.ivy2 -name \"ivydata-*.properties\" -delete
-        - find $HOME/.sbt -name \"*.lock\" -delete
+        - find $HOME/.ivy2/cache -name "ivydata-*.properties" -print -delete
+        - find $HOME/.sbt        -name "*.lock"               -print -delete
       before_script:
         - cd engine-executor
         - unset SBT_OPTS
@@ -66,6 +66,9 @@ matrix:
     # Python Toolbox - OSX
     - language: generic
       os: osx
+      cache:
+        directories:
+          - $(brew --cache)
       before_install:
         - cd python-toolbox
         - travis_retry curl https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.6.tgz -o ./spark-2.1.1-bin-hadoop2.6.tgz
@@ -91,3 +94,5 @@ matrix:
       script:
         - marvin test
         - codecov
+      before_cache:
+        - brew cleanup
