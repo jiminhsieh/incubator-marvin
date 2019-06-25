@@ -65,6 +65,7 @@ matrix:
         - codecov
     # Python Toolbox - OSX
     - language: python
+      python: 2.7
       os: osx
       cache: pip
       before_install:
