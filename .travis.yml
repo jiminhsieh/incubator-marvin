@@ -64,8 +64,9 @@ matrix:
         - marvin test
         - codecov
     # Python Toolbox - OSX
-    - language: generic
+    - language: python
       os: osx
+      cache: pip
       before_install:
         - cd python-toolbox
         - travis_retry curl https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.6.tgz -o ./spark-2.1.1-bin-hadoop2.6.tgz
